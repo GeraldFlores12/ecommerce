@@ -1,7 +1,14 @@
+import { Link } from "react-router-dom"
+
 const Logo = () => {
     return (
-        <div>
-            <img src="https://gerald-flores-portafolio.netlify.app/images/profile.png" alt="Logo ecommerce" />
+        <div className="logo flex">
+            <Link to="/">
+                <img
+                    src="https://app.ed.team/images/logo/logo-alt.svg"
+                    alt="Logo ecommerce"
+                 />
+            </Link>
         </div>
     )
 }
