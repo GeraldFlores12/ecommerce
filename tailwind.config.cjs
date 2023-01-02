@@ -9,7 +9,7 @@ module.exports = {
         256: '78rem'
       },
       width: {
-        20:  '6rem'
+        20: '6rem'
       }
     },
   },

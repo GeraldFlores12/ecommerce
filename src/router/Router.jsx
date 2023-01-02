@@ -4,6 +4,10 @@ import Error404 from "../components/pages/Error404";
 import Products from "../components/pages/Products";
 import App from "../components/templates/App";
 import Login from "../components/pages/Login";
+import Register from "../components/pages/Register";
+import Form from "../components/pages/admin/products/Form"
+import Table from "../components/pages/admin/products/Table";
+
 
 const router = createBrowserRouter([
     {
@@ -24,7 +28,19 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login/>
-    }
+    },
+    {
+        path: "/registro",
+        element: <Register />,
+    },
+    {
+        path: "/admin/productos/crear",
+        element: <Form />,
+    },
+    {
+        path: "/admin/productos",
+        element: <Table />,
+    },
 ])
 
 export default router
