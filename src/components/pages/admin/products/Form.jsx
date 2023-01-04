@@ -90,7 +90,7 @@ const Form = () => {
     <div className="max-w-256 m-auto">
       <section className="pt-10">
         <h1 className="text-4xl mb-6">
-          {`${params.iD ? "Editar" : "Crear"}`} producto
+          {`${params.id ? "Editar" : "Crear"}`} producto
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-6 mb-6">
