@@ -1,13 +1,43 @@
-import { useContext } from "react"
+import axios from "axios"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { API_URL } from "../../constants/env"
 import { CartContext } from "../../context/CartContext"
+import { token } from "../../helpers/auth"
 import SummaryItem from "../atoms/SummaryItem"
+import PayPalPayment from "../organisms/PayPalPayment"
 
 function Cart () {
     const { state } = useContext(CartContext)
+    const [order, setOrder] = useState()
     
     let value = 0
     state.cart.forEach((c) => (value += c.price))
+
+    const handleOrder = () => {
+      const products = state.cart.map((p) => {
+        return {
+          product_id: p.id,
+          amount: 1,
+          unit_price: p.price,
+        }
+      })
+
+      const data = {
+        products,
+      }
+
+      axios
+        .post(`${API_URL}/private/purchase-orders`, data, {
+          headers: {
+            Authorization: `Bearer ${token()}`,
+          },
+        })
+        .then((resp) => {
+          setOrder(resp.data.data)
+        })
+    }
+
     return (
         <div className="max-w-256 m-auto">
             <div className="grid grid-cols-3 gap-8 mb-16">
@@ -20,6 +50,16 @@ function Cart () {
                             <SummaryItem key={prod.id} product={prod} />
                           ))}
                         </div>
+                        {!order ? (
+                          <button className="bg-gradient" onClick={handleOrder}>
+                            CREAR ORDEN
+                          </button>
+                        ) : (
+                          <>
+                            <p>ID de la ORDEN de COMPRA: {order.id}</p>
+                            <PayPalPayment value={value} order={order}/>
+                          </>
+                        )}
                       </div>
                     ): (
                       <>

@@ -10,6 +10,9 @@ import Table from "../components/pages/admin/products/Table";
 import Admin from "../components/templates/Admin"
 import Product from "../components/pages/Product";
 import Cart from "../components/pages/Cart";
+import Payment from "../components/pages/Payment";
+import Profile from "../components/pages/Profile";
+import Sales from "../components/pages/admin/Sales";
 
 
 const router = createBrowserRouter([
@@ -33,7 +36,15 @@ const router = createBrowserRouter([
             {
                 path: "/carrito",
                 element: <Cart />,
-            }
+            },
+            {
+                path: "/pago-exitoso",
+                element: <Payment />,
+            },
+            {
+                path: "/perfil",
+                element: <Profile />,
+            },
         ]
     },
     {
@@ -48,6 +59,10 @@ const router = createBrowserRouter([
         path:"/admin",
         element: <Admin />,
         children: [
+            {
+                path: "/admin/ventas",
+                element: <Sales />,
+            },
             {
                 path: "/admin/productos",
                 element: <Table />,
